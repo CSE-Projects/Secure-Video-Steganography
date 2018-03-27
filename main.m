@@ -11,6 +11,7 @@ mkdir(workingDir,'imagesV');
 video = VideoReader('small.mp4');
 i = 1;
 
+
 %=== Convert each video frame into different formats and store them ===%
 while hasFrame(video)
     
@@ -22,7 +23,7 @@ while hasFrame(video)
    % each frame's Y, U, V component to be stored separately %
    [Y, U, V] = rgb2yuv(img);
    % Naming for each frame %
-   filename = [sprintf('%03d',i) '.jpg'];
+   filename = [sprintf('%d',i) '.jpg'];
    
    %=== Store the frames in their respective directories ===%
    fullname = fullfile(workingDir,'imagesRGB',filename);
@@ -38,3 +39,61 @@ while hasFrame(video)
    
    i = i+1;
 end
+
+%=== Get no of frames of the video ===%
+numOfFrames = floor(video.FrameRate*video.Duration) - 1;
+disp(numOfFrames);
+
+% Fix a key %
+key = 6;
+
+%== Shift row wise ==%
+for i = 1:3
+    filename = [sprintf('%d',i) '.jpg'];
+    fullname = fullfile(workingDir,'imagesV',filename);
+    frame = imread(fullname);
+    
+    for j = 1:key:320        
+       tmp = frame(j,:);
+       
+       for k = j:j+key
+           if k == 320
+               break;
+           end
+           frame(k,:) = frame(k+1,:);
+       end    
+       frame(j+key-1,:) = tmp; 
+    end    
+    imwrite(frame,fullname);
+    
+end
+
+%== Shift column wise ==%
+for i = 1:3
+    filename = [sprintf('%d',i) '.jpg'];
+    fullname = fullfile(workingDir,'imagesV',filename);
+    frame = imread(fullname);
+    
+    for j = 1:key:560
+        if j+key-1 > 560
+           break;
+       end
+       tmp = frame(:,j);
+       
+       for k = j+1:j+key
+           if k == 560
+               break;
+           end
+           frame(:,k) = frame(:,k+1);
+       end    
+       frame(:,j+key-1) = tmp; 
+    end    
+    figure, imshow(frame);
+    imwrite(frame,fullname);
+end
+
+
+
+
+
+
