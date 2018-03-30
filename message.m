@@ -30,12 +30,25 @@ end
 
 G = [1 1 0 1 0 0 0; 0 1 1 0 1 0 0; 1 1 1 0 0 1 0; 1 0 1 0 0 0 1];
 
+xor_key = 8;
+
+embed_key = 3;
+ 
+
 for i = 1:4:28000
+    
     if i+3>28000
         break;
     end
+    
     temp = one_d(i:i+3,1);
     temp = temp'*G;
+    
+    for j = 1:7
+        temp(1,j) = mod(temp(1,j),2);
+        temp(1,j) = xor(temp(1,j),xor_key);
+    end
+    
+    
+    
 end
-
-xor_key = 8;
