@@ -34,6 +34,12 @@ xor_key = 8;
 
 embed_key = 3;
  
+image_count = 1;
+
+position = 1;
+
+workingDir = 'frames';
+
 
 for i = 1:4:28000
     
@@ -49,6 +55,36 @@ for i = 1:4:28000
         temp(1,j) = xor(temp(1,j),xor_key);
     end
     
+    if position == 181
+        position = 1;
+        image_count = image_count + 1;
+    end
     
+    filename = [sprintf('%d',image_count) '.jpg'];
+    fullnameV = fullfile(workingDir,'imagesV',filename);
+    frameV = imread(fullnameV);
     
+    filename = [sprintf('%d',image_count) '.jpg'];
+    fullnameU = fullfile(workingDir,'imagesU',filename);
+    frameU = imread(fullnameU);
+    
+    filename = [sprintf('%d',image_count) '.jpg'];
+    fullnameY = fullfile(workingDir,'imagesY',filename);
+    frameY = imread(fullnameY);
+    
+    frameY(embed_key,(position-1)*3+1) = temp(1,1);
+    frameY(embed_key,(position-1)*3+2) = temp(1,2);
+    frameY(embed_key,(position-1)*3+3) = temp(1,3);
+    
+    frameU(embed_key,(position-1)*2+1) = temp(1,4);
+    frameU(embed_key,(position-1)*2+2) = temp(1,5);
+    
+    frameV(embed_key,(position-1)*2+1) = temp(1,6);
+    frameV(embed_key,(position-1)*2+2) = temp(1,7);
+    
+    imwrite(frameU,fullnameU);
+    imwrite(frameV,fullnameV);
+    imwrite(frameY,fullnameY);
+    
+    position = position + 1;
 end
