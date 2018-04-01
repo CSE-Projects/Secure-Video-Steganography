@@ -23,7 +23,7 @@ while hasFrame(video)
    % each frame's Y, U, V component to be stored separately %
    [Y, U, V] = rgb2yuv(img);
    % Naming for each frame %
-   filename = [sprintf('%d',i) '.jpg'];
+   filename = [sprintf('%d',i) '.bmp'];
    
    %=== Store the frames in their respective directories ===%
    fullname = fullfile(workingDir,'imagesRGB',filename);
@@ -102,7 +102,7 @@ if mod(cycle,2) == 1
 end
 
 for i = 1:3
-    filename = [sprintf('%d',i) '.jpg'];
+    filename = [sprintf('%d',i) '.bmp'];
     fullname = fullfile(workingDir,'imagesV',filename);
     frame = imread(fullname);
     
@@ -164,7 +164,7 @@ if mod(cycle,2) == 1
 end
 
 for i = 1:3
-    filename = [sprintf('%d',i) '.jpg'];
+    filename = [sprintf('%d',i) '.bmp'];
     fullname = fullfile(workingDir,'imagesV',filename);
     frame = imread(fullname);
     
@@ -192,7 +192,7 @@ for i = 1:3
 end
 
 for i = 1:3
-    filename = [sprintf('%d',i) '.jpg'];
+    filename = [sprintf('%d',i) '.bmp'];
     fullname = fullfile(workingDir,'imagesV',filename);
     frame = imread(fullname);
     
@@ -224,7 +224,7 @@ if mod(cycle,2) == 1
 end
 
 for i = 1:3
-    filename = [sprintf('%d',i) '.jpg'];
+    filename = [sprintf('%d',i) '.bmp'];
     fullname = fullfile(workingDir,'imagesV',filename);
     frame = imread(fullname);
     

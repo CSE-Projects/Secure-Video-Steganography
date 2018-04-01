@@ -60,15 +60,15 @@ for i = 1:4:28000
         image_count = image_count + 1;
     end
     
-    filename = [sprintf('%d',image_count) '.jpg'];
+    filename = [sprintf('%d',image_count) '.bmp'];
     fullnameV = fullfile(workingDir,'imagesV',filename);
     frameV = imread(fullnameV);
     
-    filename = [sprintf('%d',image_count) '.jpg'];
+    filename = [sprintf('%d',image_count) '.bmp'];
     fullnameU = fullfile(workingDir,'imagesU',filename);
     frameU = imread(fullnameU);
     
-    filename = [sprintf('%d',image_count) '.jpg'];
+    filename = [sprintf('%d',image_count) '.bmp'];
     fullnameY = fullfile(workingDir,'imagesY',filename);
     frameY = imread(fullnameY);
     
