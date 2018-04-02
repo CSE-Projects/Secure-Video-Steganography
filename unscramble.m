@@ -1,5 +1,6 @@
 key = 5;
 
+% Following the reverse procedure of scrambling
 cycle = floor(560/key);
 
 if mod(cycle,2) == 1
