@@ -1,11 +1,11 @@
 %=== Set directories to store video frames ===%
 workingDir = 'frames';
 mkdir(workingDir);
-mkdir(workingDir,'imagesRGB');
-mkdir(workingDir,'imagesYCbCr');
-mkdir(workingDir,'imagesY');
-mkdir(workingDir,'imagesU');
-mkdir(workingDir,'imagesV');
+mkdir(workingDir,'framesRGB');
+mkdir(workingDir,'framesYCbCr');
+mkdir(workingDir,'framesY');
+mkdir(workingDir,'framesU');
+mkdir(workingDir,'framesV');
 
 %=== Get video reader obj for the video ===%
 video = VideoReader('small.mp4');
@@ -18,7 +18,7 @@ while hasFrame(video)
    % Read frame from the video %
    img = readFrame(video);
    % Get YCbCr format from inbuilt function %
-   YCbCr = rgb2ycbcr(img);
+   % YCbCr = rgb2ycbcr(img);
    % Get YUV format from function defined in rgb2yuv.m %
    % each frame's Y, U, V component to be stored separately %
    [Y, U, V] = rgb2yuv(img);
@@ -26,15 +26,15 @@ while hasFrame(video)
    filename = [sprintf('%d',i) '.bmp'];
    
    %=== Store the frames in their respective directories ===%
-   fullname = fullfile(workingDir,'imagesRGB',filename);
+   fullname = fullfile(workingDir,'framesRGB',filename);
    imwrite(img,fullname);
-   fullname = fullfile(workingDir,'imagesYCbCr',filename);
-   imwrite(YCbCr,fullname);
-   fullname = fullfile(workingDir,'imagesY',filename);
+   % fullname = fullfile(workingDir,'imagesYCbCr',filename);
+   % imwrite(YCbCr,fullname);
+   fullname = fullfile(workingDir,'framesY',filename);
    imwrite(Y,fullname);
-   fullname = fullfile(workingDir,'imagesU',filename);
+   fullname = fullfile(workingDir,'framesU',filename);
    imwrite(U,fullname);
-   fullname = fullfile(workingDir,'imagesV',filename);
+   fullname = fullfile(workingDir,'framesV',filename);
    imwrite(V,fullname);
    
    i = i+1;
@@ -57,7 +57,7 @@ end
 for i = 1:166
 	% Reading images from 1 to 166
     filename = [sprintf('%d',i) '.bmp'];
-    fullname = fullfile(workingDir,'imagesV',filename);
+    fullname = fullfile(workingDir,'framesV',filename);
     frame = imread(fullname);
     abc = frame;
     for j = 1:cycle/2        
@@ -85,7 +85,7 @@ end
 
 for i = 1:166
     filename = [sprintf('%d',i) '.bmp'];
-    fullname = fullfile(workingDir,'imagesV',filename);
+    fullname = fullfile(workingDir,'framesV',filename);
     frame = imread(fullname);
     for j = 1:cycle/2        
         endpart1 = cycle - j;
@@ -111,7 +111,7 @@ end
 
 for i = 1:166
     filename = [sprintf('%d',i) '.bmp'];
-    fullname = fullfile(workingDir,'imagesY',filename);
+    fullname = fullfile(workingDir,'framesY',filename);
     frame = imread(fullname);
     abc = frame;
     for j = 1:cycle/2        
@@ -135,7 +135,7 @@ end
 
 for i = 1:166
     filename = [sprintf('%d',i) '.bmp'];
-    fullname = fullfile(workingDir,'imagesY',filename);
+    fullname = fullfile(workingDir,'framesY',filename);
     frame = imread(fullname);
     for j = 1:cycle/2        
         endpart1 = cycle - j;
@@ -161,7 +161,7 @@ end
 
 for i = 1:166
     filename = [sprintf('%d',i) '.bmp'];
-    fullname = fullfile(workingDir,'imagesU',filename);
+    fullname = fullfile(workingDir,'framesU',filename);
     frame = imread(fullname);
     abc = frame;
     for j = 1:cycle/2        
@@ -185,7 +185,7 @@ end
 
 for i = 1:166
     filename = [sprintf('%d',i) '.bmp'];
-    fullname = fullfile(workingDir,'imagesU',filename);
+    fullname = fullfile(workingDir,'framesU',filename);
     frame = imread(fullname);
     for j = 1:cycle/2        
         endpart1 = cycle - j;
@@ -199,7 +199,6 @@ for i = 1:166
     end
     %figure, imshow(frame);
     imwrite(frame,fullname);
-
 end
 
 

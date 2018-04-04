@@ -9,7 +9,7 @@ end
 
 for i = 1:166
     filename = [sprintf('%d',i) '.bmp'];
-    fullname = fullfile(workingDir,'imagesV',filename);
+    fullname = fullfile(workingDir,'framesV',filename);
     frame = imread(fullname);
     for j = 1:cycle/2        
         endpart1 = cycle - j;
@@ -34,7 +34,7 @@ end
 
 for i = 1:166
     filename = [sprintf('%d',i) '.bmp'];
-    fullname = fullfile(workingDir,'imagesV',filename);
+    fullname = fullfile(workingDir,'framesV',filename);
     frame = imread(fullname);
     abc = frame;
     for j = 1:cycle/2        
@@ -58,7 +58,7 @@ end
 
 for i = 1:166
     filename = [sprintf('%d',i) '.bmp'];
-    fullname = fullfile(workingDir,'imagesU',filename);
+    fullname = fullfile(workingDir,'framesU',filename);
     frame = imread(fullname);
     for j = 1:cycle/2        
         endpart1 = cycle - j;
@@ -83,7 +83,7 @@ end
 
 for i = 1:166
     filename = [sprintf('%d',i) '.bmp'];
-    fullname = fullfile(workingDir,'imagesU',filename);
+    fullname = fullfile(workingDir,'framesU',filename);
     frame = imread(fullname);
     abc = frame;
     for j = 1:cycle/2        
@@ -107,7 +107,7 @@ end
 
 for i = 1:166
     filename = [sprintf('%d',i) '.bmp'];
-    fullname = fullfile(workingDir,'imagesY',filename);
+    fullname = fullfile(workingDir,'framesY',filename);
     frame = imread(fullname);
     for j = 1:cycle/2        
         endpart1 = cycle - j;
@@ -132,7 +132,7 @@ end
 
 for i = 1:166
     filename = [sprintf('%d',i) '.bmp'];
-    fullname = fullfile(workingDir,'imagesY',filename);
+    fullname = fullfile(workingDir,'framesY',filename);
     frame = imread(fullname);
     abc = frame;
     for j = 1:cycle/2        

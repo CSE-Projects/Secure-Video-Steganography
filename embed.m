@@ -33,24 +33,21 @@ image_count = 1;
 position = 1;
 workingDir = 'frames';
 
-fullnameV;
-fullnameU;
-fullnameY;
+fullnameV = '';
+fullnameU = '';
+fullnameY = '';
 
 frameV = zeros(320,560);
 frameU = zeros(320,560);
 frameY = zeros(320,560);
 
 for i = 1:4:28000
-    
     if i+3>28000
         break;
     end
-    
     temp = one_d(i:i+3,1);
 	% Applying Hamming code
     temp = temp'*G;
-    
 	% Calculating the xor and taking mod 2
     for j = 1:7
         temp(1,j) = mod(temp(1,j),2);
@@ -58,23 +55,21 @@ for i = 1:4:28000
     end
 
 	% Shifting the image_count for message embedding
-    
     if position == 181
         position = 1;
         image_count = image_count + 1;
     end
-    
     if position == 1
         filename = [sprintf('%d',image_count) '.bmp'];
-        fullnameV = fullfile(workingDir,'imagesV',filename);
+        fullnameV = fullfile(workingDir,'framesV',filename);
         frameV = imread(fullnameV);
 
         filename = [sprintf('%d',image_count) '.bmp'];
-        fullnameU = fullfile(workingDir,'imagesU',filename);
+        fullnameU = fullfile(workingDir,'framesU',filename);
         frameU = imread(fullnameU);
 
         filename = [sprintf('%d',image_count) '.bmp'];
-        fullnameY = fullfile(workingDir,'imagesY',filename);
+        fullnameY = fullfile(workingDir,'framesY',filename);
         frameY = imread(fullnameY);
     end
     
