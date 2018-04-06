@@ -1,6 +1,7 @@
 %=== Set directory of frames ===%
 workingDir = 'frames';
 mkdir(workingDir,'embeddedFramesRGB');
+mkdir(workingDir,'receiver_embeddedFramesRGB');
 
 % read Y, U, V frames, convert and combine them into single RGB frame
 for i = 1:166
@@ -23,10 +24,5 @@ for i = 1:166
     % store the RGB frame
     filename = [sprintf('%d',i) '.bmp'];
     fullname = fullfile(workingDir, 'embeddedFramesRGB',  filename);
-    imwrite(RGB,fullname);
-    
-    % Constructing video from embeddedFramesRGB frames
-    % ffmpeg -start_number 1 -i %d.bmp -vcodec mpeg4 reconstructed.mp4
-    % https://github.com/FFmpeg/FFmpeg
-    
+    imwrite(RGB,fullname);   
 end
