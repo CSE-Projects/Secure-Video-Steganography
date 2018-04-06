@@ -24,4 +24,9 @@ for i = 1:166
     filename = [sprintf('%d',i) '.bmp'];
     fullname = fullfile(workingDir, 'embeddedFramesRGB',  filename);
     imwrite(RGB,fullname);
+    
+    % Constructing video from embeddedFramesRGB frames
+    % ffmpeg -start_number 1 -i %d.bmp -vcodec mpeg4 reconstructed.mp4
+    % https://github.com/FFmpeg/FFmpeg
+    
 end
