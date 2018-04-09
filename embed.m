@@ -63,7 +63,7 @@ for i = 1:4:28000
         filename = [sprintf('%d',image_count) '.bmp'];
         fullnameV = fullfile(workingDir,'framesV',filename);
         frameV = imread(fullnameV);
-
+        
         filename = [sprintf('%d',image_count) '.bmp'];
         fullnameU = fullfile(workingDir,'framesU',filename);
         frameU = imread(fullnameU);

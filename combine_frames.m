@@ -3,6 +3,9 @@ workingDir = 'frames';
 mkdir(workingDir,'embeddedFramesRGB');
 mkdir(workingDir,'receiver_embeddedFramesRGB');
 
+unscramble(key, workingDir, 'framesY', 'framesU', 'framesV');
+
+
 % read Y, U, V frames, convert and combine them into single RGB frame
 for i = 1:166
     % Get Y component
@@ -19,6 +22,8 @@ for i = 1:166
     V = imread(fullname);
     
     % convert and combine Y, U, V components into RGB frame
+    % YCbCr = cat(3, Y, U, V); 
+    % RGB = ycbcr2rgb(YCbCr);
     RGB = yuv2rgb(Y, U, V);
     
     % store the RGB frame

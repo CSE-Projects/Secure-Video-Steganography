@@ -4,7 +4,7 @@ workingDir = 'frames';
 imageNames = dir(fullfile(workingDir,'embeddedFramesRGB','*.bmp'));
 imageNames = {imageNames.name}';
 
-outputVideo = VideoWriter('small1.avi');
+outputVideo = VideoWriter('small1.mp4', 'MPEG-4');
 outputVideo.FrameRate = 30;
 open(outputVideo);
 
