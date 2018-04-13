@@ -3,8 +3,8 @@ workingDir = 'frames';
 mkdir(workingDir,'embeddedFramesRGB');
 mkdir(workingDir,'receiver_embeddedFramesRGB');
 
+% Unscramble each of the frames Y, U, V
 unscramble(key, workingDir, 'framesY', 'framesU', 'framesV');
-
 
 % read Y, U, V frames, convert and combine them into single RGB frame
 for i = 1:166
