@@ -1,4 +1,4 @@
-## Data Communications (CO250): Mini-Project
+# Data Communications (CO250): Mini-Project
 
 **Title:**
 
@@ -46,10 +46,47 @@ Ramadhan J. Mstafa, Khaled M. Elleithy, "A highly secure video steganography usi
 [View Paper](http://ieeexplore.ieee.org/document/6845191/)
 
 
+## Usage
+
+Run the following files in order 
+1. `main.m` : In the `frames` directory the following would be present
+    * `framesRGB` : RGB frames of the video small.mp4
+    * `framesY` : srambled Y components for RGB frames
+    * `framesU` : srambled U components for RGB frames
+    * `framesV` : srambled V components for RGB frames
+
+2. `embed_message.m` : The binary image `message.png` will be embedded into the scrambled Y, U, V components. 
+
+3. `combine_frames.m` : In the directory `frames\embeddedFramesRGB`, the embedded RGB frames will be created.
+
+4. `frames_to_video.m` : Video named `em_small.avi` will be created from the embedded RGB frames.
+
+
 ## File Structure
 
-* Introduction.md - Explains theoretical aspects of the mini project.
+* `Introduction.md` - Explains theoretical aspects of the mini project.
 
-* Design.md - Explains design aspects of the mini project.
+* `Design.md` - Explains design aspects of the mini project.
 
-* main.m - Main module of the implementation.
+* `main.m` - Main module of the implementation.
+
+* `construct_frames.m` - Construct RGB frames from the video and get their Y, U, V components. Save them in the mentioned      location.
+
+* `embed_message.m` - Applying (7, 4) Hamming Code to the message and embed the same into the scrambled Y, U, V frames.
+
+* `combine_frames.m` - Combine the embedded Y, U, V frames into their embedded RGB frame.
+
+* `frames_to_video.m` - Construct the video from the embedded RGB frames.
+
+* `scramble.m` - Scrambles all the Y, U, V frames given their directory based on a key.
+
+* `unscramble.m` - Unscrambles all the Y, U, V frames given their directory based on a key.
+
+* `yuv2rgb.m` - Converts Y, U, V components into a single RGB frame.
+
+* `rgb2yuv.m` - Converts a RGB frame to its Y, U, V components.
+
+* `small.mp4` - Video used to embed message into.
+
+* `message.png` - Binary image to be sent after embedding it into small.mp4 video and retreived at the other end.
+
