@@ -47,8 +47,6 @@ while hasFrame(video)
    imwrite(img,fullname);
    img1 = imread(fullfile(workingDir,'receiver_embeddedFramesRGB',filename));
    img2 = imread(fullfile(workingDir,'embeddedFramesRGB',filename));
-   img1 = img1(:,:,1);
-   img2 = img2(:,:,1);
    if img1 == img2
        count = count + 1;
    end

@@ -11,6 +11,8 @@ position = 1;
 image_count = 1;
 xor_key = 8;
 
+count_diff = 1;
+
 frameY = zeros(320,560);
 frameV = zeros(320,560);
 frameU = zeros(320,560);
@@ -60,8 +62,10 @@ for i= 1:28000
     z(1,1)=mod(z(1,1),2);
     z(1,2)=mod(z(1,2),2);
     z(1,3)=mod(z(1,3),2);
+    z
     
     if (z(1,1)==0) && (z(1,2)==0) && (z(1,3)==0)
+        count_diff = count_diff + 1;
         read_message(count)  =r(1,4);
         read_message(count+1)=r(1,5);
         read_message(count+2)=r(1,6);
@@ -94,6 +98,13 @@ for i= 1:28000
         read_message(count+1)=r(1,5);
         read_message(count+2)=r(1,6);
         read_message(count+3)=~r(1,7);
+        
+    else 
+        read_message(count)  =r(1,4);
+        read_message(count+1)=r(1,5);
+        read_message(count+2)=r(1,6);
+        read_message(count+3)=r(1,7);
+        
     end
     
 %     read_message(count,1)=xor(xor_key,frameU(3,(position-1)*2+1));
@@ -112,15 +123,16 @@ for i= 1:28000
     
 end
 
-temp = read_message(27997:28000,1);
+temp = read_message(27996:28000,1);
 
-for i= 27996:-1:1
-    read_message(i+4,1)=read_message(i,1);
+for i= 27995:-1:1
+    read_message(i+5,1)=read_message(i,1);
 end
 read_message(1,1)=temp(1,1);
 read_message(2,1)=temp(2,1);
 read_message(3,1)=temp(3,1);
 read_message(4,1)=temp(4,1);
+read_message(5,1)=temp(5,1);
 
 xe = zeros(140,200);
 count=1;
@@ -132,3 +144,4 @@ for i = 1:140
      end
 end
 figure, imshow(xe)
+% xe - message

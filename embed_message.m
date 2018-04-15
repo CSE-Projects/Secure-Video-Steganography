@@ -53,6 +53,8 @@ for i = 1:4:28000
         temp(1,j) = mod(temp(1,j),2);
         temp(1,j) = xor(temp(1,j),xor_key);
     end
+    
+    %temp(1,1)+temp(1,4)+temp(1,6)+temp(1,7)+temp(1,1)
 
 	% Shifting the image_count for message embedding
     if position == 181
