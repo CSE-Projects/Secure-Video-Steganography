@@ -53,6 +53,7 @@ Ramadhan J. Mstafa, Khaled M. Elleithy, "A highly secure video steganography usi
 * Specify the key to be used in the file `main.m`
 
 * Run the following files in order 
+
     1. `main.m` : In the `frames` directory the following would be present
         * `framesRGB` : RGB frames of the video `small.mp4` or `large.mp4`
         * `framesY` : srambled Y components for RGB frames
