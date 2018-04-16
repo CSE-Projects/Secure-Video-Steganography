@@ -1,14 +1,26 @@
 workingDir = 'frames';
+
+% Read video
 video = VideoReader('em_small.avi');
+
+% Constructing frames
 construct_frames(video, workingDir, 'receiver_embeddedFramesRGB', 'framesY', 'framesU', 'framesV');
 
+
+% Scrambling frames
 scramble(key, workingDir, 'framesY', 'framesU', 'framesV');
 read_message = zeros(28000,1);
+
+% Initializing matrices for hamming correction
 r = zeros(1,7);
 ht = [1 0 0; 0 1 0; 0 0 1; 1 1 0; 0 1 1; 1 1 1; 1 0 1];
 count = 1;
 position = 1;
+
+% Used to keep image count
 image_count = 1;
+
+% Key to xor
 xor_key = 8;
 
 count_diff = 1;
@@ -17,16 +29,20 @@ frameY = zeros(320,560);
 frameV = zeros(320,560);
 frameU = zeros(320,560);
 
+
+% Iterating over each pixel
 for i= 1:28000
     if count>=28001
         break
     end
     
+    % Going to next image once we are done with the current one
     if position == 181
         position = 1;
         image_count = image_count + 1;
     end
     
+    % Opening a new image
     if position == 1
         
         filename = [sprintf('%d',image_count) '.bmp'];
@@ -42,6 +58,7 @@ for i= 1:28000
         frameU = imread(fullnameU);
     end
     
+    % Assigning values to read matrix
     r(1,1)=xor(xor_key,frameY(3,(position-1)*3+1));
 %     r(1,1)=mod(r(1,1),2);
     r(1,2)=xor(xor_key,frameY(3,(position-1)*3+2));
@@ -57,6 +74,8 @@ for i= 1:28000
     r(1,7)=xor(xor_key,frameV(3,(position-1)*2+2));
 %     r(1,7)=mod(r(1,7),2);
     
+
+    % Calculating syndrome
     z = r * ht;
 
     z(1,1)=mod(z(1,1),2);
@@ -64,6 +83,8 @@ for i= 1:28000
     z(1,3)=mod(z(1,3),2);
     z
     
+    
+    % Making corrections
     if (z(1,1)==0) && (z(1,2)==0) && (z(1,3)==0)
         count_diff = count_diff + 1;
         read_message(count)  =r(1,4);
@@ -71,34 +92,35 @@ for i= 1:28000
         read_message(count+2)=r(1,6);
         read_message(count+3)=r(1,7);
     
-    
+    % Making corrections
     elseif (z(1,1)==1) && (z(1,2)==1) && (z(1,3)==0)
         read_message(count)  =~r(1,4);
         read_message(count+1)=r(1,5);
         read_message(count+2)=r(1,6);
         read_message(count+3)=r(1,7);
     
-    
+    % Making corrections
     elseif (z(1,1)==0) && (z(1,2)==1) && (z(1,3)==1)
         read_message(count)  =r(1,4);
         read_message(count+1)=~r(1,5);
         read_message(count+2)=r(1,6);
         read_message(count+3)=r(1,7);
     
-    
+    % Making corrections
     elseif (z(1,1)==1) && (z(1,2)==1) && (z(1,3)==1)
         read_message(count)  =r(1,4);
         read_message(count+1)=r(1,5);
         read_message(count+2)=~r(1,6);
         read_message(count+3)=r(1,7);
     
-    
+    % Making corrections
     elseif (z(1,1)==1) && (z(1,2)==0) && (z(1,3)==1)
         read_message(count)  =r(1,4);
         read_message(count+1)=r(1,5);
         read_message(count+2)=r(1,6);
         read_message(count+3)=~r(1,7);
         
+    % Making corrections
     else 
         read_message(count)  =r(1,4);
         read_message(count+1)=r(1,5);
@@ -123,6 +145,8 @@ for i= 1:28000
     
 end
 
+
+% Performing cyclic shift of image pixels using key
 temp = read_message(27996:28000,1);
 
 for i= 27995:-1:1
@@ -134,6 +158,8 @@ read_message(3,1)=temp(3,1);
 read_message(4,1)=temp(4,1);
 read_message(5,1)=temp(5,1);
 
+
+% Constructing the image
 xe = zeros(140,200);
 count=1;
 

@@ -1,4 +1,6 @@
 filename = 'message.png';
+
+% Read message
 message = imread(filename);
 figure, imshow(message);
 message_transpose = message';
