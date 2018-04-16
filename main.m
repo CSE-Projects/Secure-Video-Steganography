@@ -7,18 +7,18 @@ mkdir(workingDir,'framesU');
 mkdir(workingDir,'framesV');
 
 %=== Get video reader obj for the video ===%
-video = VideoReader('small.mp4');
+video = VideoReader('large.mp4');
 
-%=== construct frames from the video reader object ===%
+%=== construct frames and get their dimentions from the video reader object ===%
 %=== store them in these directories ===%
-construct_frames(video, workingDir, 'framesRGB', 'framesY', 'framesU', 'framesV');
+[height, width] = construct_frames(video, workingDir, 'framesRGB', 'framesY', 'framesU', 'framesV');
 
 %=== Get no of frames of the video ===%
-numOfFrames = floor(video.FrameRate*video.Duration) - 1;
-disp(numOfFrames);
+noOfFrames = floor(video.FrameRate*video.Duration) - 1;
+disp(noOfFrames);
 
 %=== Fix a key ===%
 key = 5;
 
 %=== scamble the video frames ===%
-scramble(key, workingDir, 'framesY', 'framesU', 'framesV');
+scramble(key, height, width, noOfFrames, workingDir, 'framesY', 'framesU', 'framesV');

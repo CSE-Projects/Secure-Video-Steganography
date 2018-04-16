@@ -10,7 +10,7 @@ one_d = message_transpose(:);
 
 count=1;
 
-key = 5;
+% key = 5;
 
 % Cyclic shift for the message matrix using the key
 temp = one_d(1:key,1);
@@ -39,9 +39,9 @@ fullnameV = '';
 fullnameU = '';
 fullnameY = '';
 
-frameV = zeros(320,560);
-frameU = zeros(320,560);
-frameY = zeros(320,560);
+frameV = zeros(height,width);
+frameU = zeros(height,width);
+frameY = zeros(height,width);
 
 for i = 1:4:28000
     if i+3>28000

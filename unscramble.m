@@ -1,17 +1,17 @@
 % Unscrambles a frame based on the key
-function unscramble(key, workingDir, frameLocationY, frameLocationU, frameLocationV) 
+function unscramble(key, height, width, noOfFrames, workingDir, frameLocationY, frameLocationU, frameLocationV) 
     % Following the reverse procedure of scrambling
 	
 	% Determine number of slots
-    cycle = floor(560/key);
+    cycle = floor(width/key);
 
 	% Making number of cycles even
     if mod(cycle,2) == 1
         cycle = cycle - 1;
     end
 
-    for i = 1:166
-		% Read images from 1 to 166
+    for i = 1:noOfFrames
+		% Read images from 1 to noOfFrames
         filename = [sprintf('%d',i) '.bmp'];
         fullname = fullfile(workingDir,frameLocationV,filename);
         frame = imread(fullname);
@@ -36,15 +36,15 @@ function unscramble(key, workingDir, frameLocationY, frameLocationU, frameLocati
 
 	% Determine number of slots
 
-    cycle = floor(320/key);
+    cycle = floor(height/key);
 
 	% Making number of cycles even
     if mod(cycle,2) == 1
         cycle = cycle - 1;
     end
 
-    for i = 1:166
-		% Read images from 1 to 166
+    for i = 1:noOfFrames
+		% Read images from 1 to noOfFrames
 
         filename = [sprintf('%d',i) '.bmp'];
         fullname = fullfile(workingDir,frameLocationV,filename);
@@ -69,15 +69,15 @@ function unscramble(key, workingDir, frameLocationY, frameLocationU, frameLocati
 
 	% Determine number of slots
 
-    cycle = floor(560/key);
+    cycle = floor(width/key);
 
 	% Making number of cycles even
     if mod(cycle,2) == 1
         cycle = cycle - 1;
     end
 
-    for i = 1:166
-		% Read images from 1 to 166
+    for i = 1:noOfFrames
+		% Read images from 1 to noOfFrames
 
         filename = [sprintf('%d',i) '.bmp'];
         fullname = fullfile(workingDir,frameLocationU,filename);
@@ -103,15 +103,15 @@ function unscramble(key, workingDir, frameLocationY, frameLocationU, frameLocati
 
 	% Determine number of slots
 
-    cycle = floor(320/key);
+    cycle = floor(height/key);
 
 	% Making number of cycles even
     if mod(cycle,2) == 1
         cycle = cycle - 1;
     end
 
-    for i = 1:166
-		% Read images from 1 to 166
+    for i = 1:noOfFrames
+		% Read images from 1 to noOfFrames
 
         filename = [sprintf('%d',i) '.bmp'];
         fullname = fullfile(workingDir,frameLocationU,filename);
@@ -136,15 +136,15 @@ function unscramble(key, workingDir, frameLocationY, frameLocationU, frameLocati
 
 	% Determine number of slots
 
-    cycle = floor(560/key);
+    cycle = floor(width/key);
 
 	% Making number of cycles even
     if mod(cycle,2) == 1
         cycle = cycle - 1;
     end
 
-    for i = 1:166
-		% Read images from 1 to 166
+    for i = 1:noOfFrames
+		% Read images from 1 to noOfFrames
 
         filename = [sprintf('%d',i) '.bmp'];
         fullname = fullfile(workingDir,frameLocationY,filename);
@@ -170,15 +170,15 @@ function unscramble(key, workingDir, frameLocationY, frameLocationU, frameLocati
 
 	% Determine number of slots
 
-    cycle = floor(320/key);
+    cycle = floor(height/key);
 
 	% Making number of cycles even
     if mod(cycle,2) == 1
         cycle = cycle - 1;
     end
 
-    for i = 1:166
-		% Read images from 1 to 166
+    for i = 1:noOfFrames
+		% Read images from 1 to noOfFrames
 
         filename = [sprintf('%d',i) '.bmp'];
         fullname = fullfile(workingDir,frameLocationY,filename);

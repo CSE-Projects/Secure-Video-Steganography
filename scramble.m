@@ -1,15 +1,15 @@
 % Scrambles a frame based on the key 
-function scramble(key, workingDir, frameLocationY, frameLocationU, frameLocationV) 
+function scramble(key, height, width , noOfFrames, workingDir, frameLocationY, frameLocationU, frameLocationV) 
     % Determining the number of slots based on key
-    cycle = floor(320/key);
+    cycle = floor(height/key);
 
 	% Making sure that there are even slots
     if mod(cycle,2) == 1
         cycle = cycle - 1;
     end
 
-    for i = 1:166
-        % Reading images from 1 to 166
+    for i = 1:noOfFrames
+        % Reading images from 1 to noOfFrames
         filename = [sprintf('%d',i) '.bmp'];
         fullname = fullfile(workingDir, frameLocationV, filename);
         frame = imread(fullname);
@@ -37,7 +37,7 @@ function scramble(key, workingDir, frameLocationY, frameLocationU, frameLocation
 
     % Determining the number of slots based on key
 
-    cycle = floor(560/key);
+    cycle = floor(width/key);
 
 	% Making sure that there are even slots
 
@@ -45,8 +45,8 @@ function scramble(key, workingDir, frameLocationY, frameLocationU, frameLocation
         cycle = cycle - 1;
     end
 
-    for i = 1:166
-        % Reading images from 1 to 166
+    for i = 1:noOfFrames
+        % Reading images from 1 to noOfFrames
 
         filename = [sprintf('%d',i) '.bmp'];
         fullname = fullfile(workingDir,frameLocationV,filename);
@@ -74,7 +74,7 @@ function scramble(key, workingDir, frameLocationY, frameLocationU, frameLocation
 
     % Determining the number of slots based on key
 
-    cycle = floor(320/key);
+    cycle = floor(height/key);
 
 	% Making sure that there are even slots
 
@@ -82,8 +82,8 @@ function scramble(key, workingDir, frameLocationY, frameLocationU, frameLocation
         cycle = cycle - 1;
     end
 
-    for i = 1:166
-        % Reading images from 1 to 166
+    for i = 1:noOfFrames
+        % Reading images from 1 to noOfFrames
 
         filename = [sprintf('%d',i) '.bmp'];
         fullname = fullfile(workingDir,frameLocationU,filename);
@@ -108,7 +108,7 @@ function scramble(key, workingDir, frameLocationY, frameLocationU, frameLocation
 
     % Determining the number of slots based on key
 
-    cycle = floor(560/key);
+    cycle = floor(width/key);
 
 	% Making sure that there are even slots
 
@@ -116,8 +116,8 @@ function scramble(key, workingDir, frameLocationY, frameLocationU, frameLocation
         cycle = cycle - 1;
     end
 
-    for i = 1:166
-        % Reading images from 1 to 166
+    for i = 1:noOfFrames
+        % Reading images from 1 to noOfFrames
 
         filename = [sprintf('%d',i) '.bmp'];
         fullname = fullfile(workingDir,frameLocationU,filename);
@@ -143,7 +143,7 @@ function scramble(key, workingDir, frameLocationY, frameLocationU, frameLocation
 
     % Determining the number of slots based on key
 
-    cycle = floor(320/key);
+    cycle = floor(height/key);
 
 	% Making sure that there are even slots
 
@@ -151,8 +151,8 @@ function scramble(key, workingDir, frameLocationY, frameLocationU, frameLocation
         cycle = cycle - 1;
     end
 
-    for i = 1:166
-        % Reading images from 1 to 166
+    for i = 1:noOfFrames
+        % Reading images from 1 to noOfFrames
 
         filename = [sprintf('%d',i) '.bmp'];
         fullname = fullfile(workingDir,frameLocationY,filename);
@@ -177,7 +177,7 @@ function scramble(key, workingDir, frameLocationY, frameLocationU, frameLocation
 
     % Determining the number of slots based on key
 
-    cycle = floor(560/key);
+    cycle = floor(width/key);
 
 	% Making sure that there are even slots
 
@@ -185,8 +185,8 @@ function scramble(key, workingDir, frameLocationY, frameLocationU, frameLocation
         cycle = cycle - 1;
     end
 
-    for i = 1:166
-        % Reading images from 1 to 166
+    for i = 1:noOfFrames
+        % Reading images from 1 to noOfFrames
 
         filename = [sprintf('%d',i) '.bmp'];
         fullname = fullfile(workingDir,frameLocationY,filename);

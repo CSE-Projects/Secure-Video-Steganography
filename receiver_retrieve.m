@@ -1,14 +1,16 @@
 workingDir = 'frames';
 
 % Read video
-video = VideoReader('em_small.avi');
+video = VideoReader('em_video.avi');
 
 % Constructing frames
 construct_frames(video, workingDir, 'receiver_embeddedFramesRGB', 'framesY', 'framesU', 'framesV');
 
+% Fix the same key
 key = 5;
+
 % Scrambling frames
-scramble(key, workingDir, 'framesY', 'framesU', 'framesV');
+scramble(key, height, width, noOfFrames, workingDir, 'framesY', 'framesU', 'framesV');
 read_message = zeros(28000,1);
 
 % Initializing matrices for hamming correction
@@ -26,9 +28,9 @@ xor_key = 8;
 % intializations
 count_diff = 1;
 
-frameY = zeros(320,560);
-frameV = zeros(320,560);
-frameU = zeros(320,560);
+frameY = zeros(height,width);
+frameV = zeros(height,width);
+frameU = zeros(height,width);
 
 
 % Iterating over each pixel
@@ -134,19 +136,7 @@ for i= 1:28000
         read_message(count+2)=r(1,6);
         read_message(count+3)=r(1,7);
         
-    end
-    
-%     read_message(count,1)=xor(xor_key,frameU(3,(position-1)*2+1));
-%     read_message(count+1,1)=xor(xor_key,frameU(3,(position-1)*2+2));
-%     
-%     read_message(count+2,1)=xor(xor_key,frameV(3,(position-1)*2+1));
-%     read_message(count+3,1)=xor(xor_key,frameV(3,(position-1)*2+2));
-%     
-%     read_message(count,1)=mod(read_message(count,1),2);
-%     read_message(count+1,1)=mod(read_message(count+1,1),2);
-%     read_message(count+2,1)=mod(read_message(count+2,1),2);
-%     read_message(count+3,1)=mod(read_message(count+3,1),2);
-    
+    end   
     count = count + 4;
     position = position + 1;
     

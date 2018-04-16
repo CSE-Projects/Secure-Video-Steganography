@@ -1,13 +1,12 @@
 %=== Set directory of frames ===%
 workingDir = 'frames';
 mkdir(workingDir,'embeddedFramesRGB');
-mkdir(workingDir,'receiver_embeddedFramesRGB');
 
 % Unscramble each of the frames Y, U, V
-unscramble(key, workingDir, 'framesY', 'framesU', 'framesV');
+unscramble(key, height, width, noOfFrames, workingDir, 'framesY', 'framesU', 'framesV');
 
 % read Y, U, V frames, convert and combine them into single RGB frame
-for i = 1:166
+for i = 1:noOfFrames
     % Get Y component
     filename = [sprintf('%d',i) '.bmp'];
     fullname = fullfile(workingDir,'framesY',filename);

@@ -1,5 +1,6 @@
 %=== Set directory of frames ===%
 workingDir = 'frames';
+mkdir(workingDir,'receiver_embeddedFramesRGB');
 
 %=== Get embedded RGB frames ===%
 imageNames = dir(fullfile(workingDir,'embeddedFramesRGB','*.bmp'));
@@ -9,10 +10,10 @@ imageNames = {imageNames.name}';
 % end
 
 % original video
-video1 = VideoReader('small.mp4');
+video1 = VideoReader('large.mp4');
 
 %=== Set output video writer object ===%
-outputVideo = VideoWriter('em_small.avi', 'Uncompressed AVI');
+outputVideo = VideoWriter('em_video.avi', 'Uncompressed AVI');
 % set lossless compression
 ouputVideo.LosslessCompression  = true;
 % Set same frame rate as original video
@@ -32,7 +33,7 @@ close(outputVideo);
 %=== Check if the frames after video formation ===% 
 %=== are same as the frames before =====%
 
-video = VideoReader('em_small.avi');
+video = VideoReader('em_video.avi');
 i = 1;
 
 count = 0;
