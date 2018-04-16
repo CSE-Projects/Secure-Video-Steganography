@@ -6,7 +6,7 @@ video = VideoReader('em_small.avi');
 % Constructing frames
 construct_frames(video, workingDir, 'receiver_embeddedFramesRGB', 'framesY', 'framesU', 'framesV');
 
-
+key = 5;
 % Scrambling frames
 scramble(key, workingDir, 'framesY', 'framesU', 'framesV');
 read_message = zeros(28000,1);
@@ -176,4 +176,5 @@ for i = 1:140
      end
 end
 figure, imshow(xe)
+imwrite(xe, 'r_message.png');
 % xe - message
