@@ -93,3 +93,5 @@ Run the following files in order
 
 * `message.png` - Binary image to be sent after embedding it into small.mp4 video and retreived at the other end.
 
+* `psnr.m` - Calculate Peak signal-to-noise ratio.
+
