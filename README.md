@@ -48,7 +48,7 @@ Ramadhan J. Mstafa, Khaled M. Elleithy, "A highly secure video steganography usi
 
 ## Usage
 
-* Specify the video to be used in the files: `main.m` and  `frames_to_video.m` 
+* Specify the video to be used in the files: `main.m`, `frames_to_video.m` and `receiver_retrieve.m` 
 
 * Specify the key to be used in the file `main.m`
 
@@ -76,11 +76,11 @@ Original message:
 
 <img src="message.png" width="200px"><br><br>
 
-* Using `large.mp4` the retrieved message is:
+* Using `large.mp4` the retrieved message and PSNR is: infintiy 
 
 <img src="images/r_message_large.png" width="200px"><br><br>
 
-* Using `small.mp4` the retrieved message is:
+* Using `small.mp4` the retrieved message and PSNR is: 13.9140
 
 <img src="images/r_message_small.png" width="200px"><br>
 
