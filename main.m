@@ -1,5 +1,8 @@
 %=== Set directories to store video frames ===%
 workingDir = 'frames';
+if( exist(workingDir) )
+    rmdir(workingDir, 's');
+end
 mkdir(workingDir);
 mkdir(workingDir,'framesRGB');
 mkdir(workingDir,'framesY');
@@ -7,7 +10,7 @@ mkdir(workingDir,'framesU');
 mkdir(workingDir,'framesV');
 
 %=== Get video reader obj for the video ===%
-video = VideoReader('large.mp4');
+video = VideoReader('small.mp4');
 
 %=== construct frames and get their dimentions from the video reader object ===%
 %=== store them in these directories ===%

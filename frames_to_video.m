@@ -10,7 +10,7 @@ imageNames = {imageNames.name}';
 % end
 
 % original video
-video1 = VideoReader('large.mp4');
+video1 = VideoReader('small.mp4');
 
 %=== Set output video writer object ===%
 outputVideo = VideoWriter('em_video.avi', 'Uncompressed AVI');

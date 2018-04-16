@@ -48,20 +48,42 @@ Ramadhan J. Mstafa, Khaled M. Elleithy, "A highly secure video steganography usi
 
 ## Usage
 
-Run the following files in order 
-1. `main.m` : In the `frames` directory the following would be present
-    * `framesRGB` : RGB frames of the video small.mp4
-    * `framesY` : srambled Y components for RGB frames
-    * `framesU` : srambled U components for RGB frames
-    * `framesV` : srambled V components for RGB frames
+* Specify the video to be used in the files: `main.m` and  `frames_to_video.m` 
 
-2. `embed_message.m` : The binary image `message.png` will be embedded into the scrambled Y, U, V components. 
+* Specify the key to be used in the file `main.m`
 
-3. `combine_frames.m` : In the directory `frames\embeddedFramesRGB`, the embedded RGB frames will be created.
+* Run the following files in order 
+    1. `main.m` : In the `frames` directory the following would be present
+        * `framesRGB` : RGB frames of the video `small.mp4` or `large.mp4`
+        * `framesY` : srambled Y components for RGB frames
+        * `framesU` : srambled U components for RGB frames
+        * `framesV` : srambled V components for RGB frames
 
-4. `frames_to_video.m` : Video named `em_small.avi` will be created from the embedded RGB frames.
+    2. `embed_message.m` : The binary image `message.png` will be embedded into the scrambled Y, U, V components. 
 
-5. `receiver_retrieve.m` : From the video `em_small.avi` the message will be constructed back and displayed.
+    3. `combine_frames.m` : In the directory `frames\embeddedFramesRGB`, the embedded RGB frames will be created.
+
+    4. `frames_to_video.m` : Video named `em_small.avi` will be created from the embedded RGB frames.
+
+    5. `receiver_retrieve.m` : From the video `em_small.avi` the message will be constructed back and displayed.
+
+    6. `psnr.m` : Displays the PSNR value comparing the original and retrieved image message.
+
+
+## Results
+
+Original message:
+
+<img src="message.png" width="200px"><br><br>
+
+* Using `large.mp4` the retrieved message is:
+
+<img src="images/r_message_large.png" width="200px"><br><br>
+
+* Using `small.mp4` the retrieved message is:
+
+<img src="images/r_message_small.png" width="200px"><br>
+
 
 ## File Structure
 
@@ -81,6 +103,8 @@ Run the following files in order
 
 * `receiver_retrieve.m` - From the constructed video after embedding, it will retrieve the message back after applying Hamming correction.
 
+* `psnr.m` - Calculate Peak signal-to-noise ratio.
+
 * `scramble.m` - Scrambles all the Y, U, V frames given their directory based on a key.
 
 * `unscramble.m` - Unscrambles all the Y, U, V frames given their directory based on a key.
@@ -91,7 +115,8 @@ Run the following files in order
 
 * `small.mp4` - Video used to embed message into.
 
+* `large.mp4` - Video used to embed message into.
+
 * `message.png` - Binary image to be sent after embedding it into small.mp4 video and retreived at the other end.
 
-* `psnr.m` - Calculate Peak signal-to-noise ratio.
 
