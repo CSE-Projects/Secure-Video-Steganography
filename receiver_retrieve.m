@@ -23,6 +23,7 @@ image_count = 1;
 % Key to xor
 xor_key = 8;
 
+% intializations
 count_diff = 1;
 
 frameY = zeros(320,560);
@@ -44,15 +45,15 @@ for i= 1:28000
     
     % Opening a new image
     if position == 1
-        
+        % Get Y component
         filename = [sprintf('%d',image_count) '.bmp'];
         fullnameY = fullfile(workingDir,'framesY',filename);
         frameY = imread(fullnameY);
-        
+        % Get V component
         filename = [sprintf('%d',image_count) '.bmp'];
         fullnameV = fullfile(workingDir,'framesV',filename);
         frameV = imread(fullnameV);
-
+        % Get U component
         filename = [sprintf('%d',image_count) '.bmp'];
         fullnameU = fullfile(workingDir,'framesU',filename);
         frameU = imread(fullnameU);
@@ -83,17 +84,19 @@ for i= 1:28000
     z(1,3)=mod(z(1,3),2);
     z
     
-    
-    % Making corrections
+    %=== Hamming (7, 4) correction ===%
+    % Making corrections using syndrome 
     if (z(1,1)==0) && (z(1,2)==0) && (z(1,3)==0)
+        % No error
         count_diff = count_diff + 1;
         read_message(count)  =r(1,4);
         read_message(count+1)=r(1,5);
         read_message(count+2)=r(1,6);
         read_message(count+3)=r(1,7);
     
-    % Making corrections
+    % Making corrections using syndrome
     elseif (z(1,1)==1) && (z(1,2)==1) && (z(1,3)==0)
+        % Error in 1st bit
         read_message(count)  =~r(1,4);
         read_message(count+1)=r(1,5);
         read_message(count+2)=r(1,6);
@@ -101,6 +104,7 @@ for i= 1:28000
     
     % Making corrections
     elseif (z(1,1)==0) && (z(1,2)==1) && (z(1,3)==1)
+        % Error in 2nd bit
         read_message(count)  =r(1,4);
         read_message(count+1)=~r(1,5);
         read_message(count+2)=r(1,6);
@@ -108,6 +112,7 @@ for i= 1:28000
     
     % Making corrections
     elseif (z(1,1)==1) && (z(1,2)==1) && (z(1,3)==1)
+        % Error in 3rd bit
         read_message(count)  =r(1,4);
         read_message(count+1)=r(1,5);
         read_message(count+2)=~r(1,6);
@@ -115,6 +120,7 @@ for i= 1:28000
     
     % Making corrections
     elseif (z(1,1)==1) && (z(1,2)==0) && (z(1,3)==1)
+        % Error in 4th bit
         read_message(count)  =r(1,4);
         read_message(count+1)=r(1,5);
         read_message(count+2)=r(1,6);
@@ -122,6 +128,7 @@ for i= 1:28000
         
     % Making corrections
     else 
+        % Error in the redundant bits
         read_message(count)  =r(1,4);
         read_message(count+1)=r(1,5);
         read_message(count+2)=r(1,6);
@@ -148,7 +155,6 @@ end
 
 % Performing cyclic shift of image pixels using key
 temp = read_message(27996:28000,1);
-
 for i= 27995:-1:1
     read_message(i+5,1)=read_message(i,1);
 end

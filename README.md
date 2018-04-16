@@ -61,6 +61,7 @@ Run the following files in order
 
 4. `frames_to_video.m` : Video named `em_small.avi` will be created from the embedded RGB frames.
 
+5. `receiver_retrieve.m` : From the video `em_small.avi` the message will be constructed back and displayed.
 
 ## File Structure
 
@@ -77,6 +78,8 @@ Run the following files in order
 * `combine_frames.m` - Combine the embedded Y, U, V frames into their embedded RGB frame.
 
 * `frames_to_video.m` - Construct the video from the embedded RGB frames.
+
+* `receiver_retrieve.m` - From the constructed video after embedding, it will retrieve the message back after applying Hamming correction.
 
 * `scramble.m` - Scrambles all the Y, U, V frames given their directory based on a key.
 
