@@ -1,6 +1,8 @@
 %=== Set directories to store video frames ===%
 workingDir = 'frames';
-if( exist(workingDir) )
+%=== exist with two arguments is better than single argument as it searches for all categories (file, dir, var, func, buitlin etc) ===%
+%=== when a single argument is given. So, its better to provide specific category as second argument to search for... ===%
+if( exist(workingDir, 'dir') )
     rmdir(workingDir, 's');
 end
 mkdir(workingDir);
